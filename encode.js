@@ -23,6 +23,7 @@ let args = decodeArgs;
 
 const opusdec = cp.spawn(args[0], args.slice(1), {stdio: ['pipe', 'pipe', 'pipe']});
 
+// this can be omitted.
 opusdec.on('error', (error) => {
       console.log('error:', error);
 });
@@ -30,7 +31,7 @@ opusdec.on('error', (error) => {
 opusdec.stdin.write(contents);
 opusdec.stdin.end();
 
-// no-op to not fill up the buffer
+// this can be omitted.
 const opsdec_stderr_buf = [];
 opusdec.stderr.on('data', function (data) {
       opsdec_stderr_buf.push(data);
