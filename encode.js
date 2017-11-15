@@ -23,14 +23,16 @@ let args = decodeArgs;
 
 const opusdec = cp.spawn(args[0], args.slice(1), {stdio: ['pipe', 'pipe', 'pipe']});
 
+/*
 // this can be omitted.
 opusdec.on('error', (error) => {
       console.log('error:', error);
 });
-
+*/
 opusdec.stdin.write(contents);
 opusdec.stdin.end();
 
+/*
 // this can be omitted.
 const opsdec_stderr_buf = [];
 opusdec.stderr.on('data', function (data) {
@@ -44,6 +46,7 @@ opusdec.on('close', function (code) {
        next(new Error('opusdec exited with code %d', code));
     }
 });
+*/
 
 // send to the asr server
 request({
