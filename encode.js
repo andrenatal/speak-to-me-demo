@@ -18,10 +18,10 @@ let decodeArgs = [
     ];
 
 var contents = fs.readFileSync('hb.raw');
-
 let args = decodeArgs;
-
 const opusdec = cp.spawn(args[0], args.slice(1), {stdio: ['pipe', 'pipe', 'pipe']});
+opusdec.stdin.write(contents);
+opusdec.stdin.end();
 
 /*
 // this can be omitted.
@@ -29,8 +29,6 @@ opusdec.on('error', (error) => {
       console.log('error:', error);
 });
 */
-opusdec.stdin.write(contents);
-opusdec.stdin.end();
 
 /*
 // this can be omitted.
